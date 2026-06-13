@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Deployment Guide – छत्रपती उद्योग समूह</title>
+<style>
+:root{--sf:#E8761A;--sf-lt:#FEF0E1;--sf-dk:#C45E0A;--gr:#2A7A2A;--gr-lt:#EBF5EB;--gr-dk:#1C571C;--cream:#FDF8F2;--border:#DDD0C0;--text:#1A1A1A;--muted:#555;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:#f0f0f0;color:var(--text);font-size:15px;line-height:1.75;}
+.wrap{max-width:820px;margin:0 auto;padding:28px 16px 80px;}
+
+.title-card{background:linear-gradient(135deg,var(--sf-dk),var(--sf),#f0a050);color:#fff;border-radius:16px;padding:30px 24px;margin-bottom:28px;text-align:center;}
+.title-card h1{font-size:24px;margin-bottom:6px;}
+.title-card p{opacity:.9;font-size:14px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:3px 12px;font-size:12px;font-weight:600;}
+
+.toc{background:#fff;border:2px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:24px;}
+.toc h3{color:var(--gr-dk);font-size:15px;margin-bottom:10px;}
+.toc a{color:var(--sf-dk);text-decoration:none;font-size:14px;}
+.toc a:hover{text-decoration:underline;}
+.toc li{margin-bottom:5px;}
+
+.card{background:#fff;border:2px solid var(--border);border-radius:14px;padding:24px 22px;margin-bottom:22px;scroll-margin-top:16px;}
+.card-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.num{width:44px;height:44px;min-width:44px;border-radius:50%;background:var(--sf);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;box-shadow:0 2px 8px rgba(232,118,26,.3);}
+.num.g{background:var(--gr);}
+.card-head h2{font-size:19px;color:var(--sf-dk);}
+.card-head h2.g{color:var(--gr-dk);}
+.card-head p{font-size:12px;color:var(--muted);margin-top:1px;}
+
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed var(--border);}
+.step:last-child{border-bottom:none;}
+.sn{min-width:26px;height:26px;border-radius:50%;background:var(--sf-lt);color:var(--sf-dk);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px;}
+.sn.g{background:var(--gr-lt);color:var(--gr-dk);}
+.sc{flex:1;}
+.sc strong{display:block;margin-bottom:3px;font-size:15px;}
+.sc p{font-size:13px;color:#333;}
+
+.warn{background:#fff8e1;border-left:4px solid #f59e0b;border-radius:7px;padding:11px 14px;margin:9px 0;font-size:13px;}
+.warn::before{content:"⚠️  ";font-weight:700;}
+.info{background:var(--sf-lt);border-left:4px solid var(--sf);border-radius:7px;padding:11px 14px;margin:9px 0;font-size:13px;}
+.info::before{content:"💡  ";}
+.sol{background:var(--gr-lt);border-left:4px solid var(--gr);border-radius:7px;padding:11px 14px;margin:9px 0;font-size:13px;}
+.sol::before{content:"✅  ";}
+.err{background:#fff0f0;border-left:4px solid #ef4444;border-radius:7px;padding:11px 14px;margin:9px 0;font-size:13px;}
+.et{font-weight:700;color:#b91c1c;margin-bottom:4px;font-size:13px;}
+
+pre{background:#1e1e2e;color:#cdd6f4;border-radius:9px;padding:14px 16px;font-size:13px;line-height:1.7;overflow-x:auto;margin:9px 0;font-family:'Courier New',monospace;}
+.cm{color:#6c7086;} .cmd{color:#a6e3a1;} .val{color:#fab387;} .key{color:#89dceb;}
+code{background:#1e1e2e;color:#cdd6f4;padding:2px 7px;border-radius:4px;font-size:13px;font-family:'Courier New',monospace;}
+
+h3.sub{font-size:14px;color:var(--gr-dk);margin:16px 0 8px;padding-left:10px;border-left:3px solid var(--gr);}
+
+.checklist{display:flex;flex-direction:column;gap:7px;}
+.check-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;padding:8px 12px;background:#f9f9f9;border-radius:8px;border:1px solid var(--border);}
+.check-item input{width:17px;height:17px;margin-top:2px;accent-color:var(--gr);cursor:pointer;}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+th{background:var(--sf);color:#fff;padding:9px 11px;text-align:left;}
+td{padding:8px 11px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:nth-child(even) td{background:#fafafa;}
+.tag{display:inline-block;background:#fee2e2;color:#b91c1c;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;margin-bottom:3px;}
+
+.summary{background:var(--gr-dk);color:#fff;border-radius:14px;padding:24px;margin-bottom:22px;}
+.summary h3{font-size:17px;margin-bottom:12px;}
+.url-box{background:rgba(255,255,255,.12);border-radius:8px;padding:11px 14px;margin-bottom:8px;font-size:13px;}
+.url-box code{background:rgba(0,0,0,.3);color:#a6e3a1;padding:3px 8px;border-radius:4px;}
+
+footer{text-align:center;color:#888;font-size:12px;margin-top:18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- TITLE -->
+<div class="title-card">
+  <div style="font-size:38px;margin-bottom:8px;">🚀</div>
+  <h1>Deployment Guide – Static Website</h1>
+  <p>छत्रपती उद्योग समूह &nbsp;|&nbsp; First-time deployer guide</p>
+  <div class="badges">
+    <span class="badge">GitHub</span>
+    <span class="badge">Vercel</span>
+    <span class="badge">Free Hosting</span>
+    <span class="badge">~30 minutes</span>
+    <span class="badge">₹0 cost</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h3>📋 Contents</h3>
+  <ol>
+    <li><a href="#s1">Accounts needed</a></li>
+    <li><a href="#s2">Upload code to GitHub</a></li>
+    <li><a href="#s3">Deploy to Vercel</a></li>
+    <li><a href="#s4">Test your live website</a></li>
+    <li><a href="#s5">Update the website later</a></li>
+    <li><a href="#s6">Redeploy after updates</a></li>
+    <li><a href="#s7">Custom domain (future)</a></li>
+    <li><a href="#s8">Common errors &amp; fixes</a></li>
+  </ol>
+</div>
+
+<!-- ── STEP 0 ── -->
+<div class="card" id="s0">
+  <div class="card-head">
+    <div class="num">0</div>
+    <div><h2>Before You Start</h2><p>2 free accounts needed</p></div>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <strong>Create a GitHub account → <a href="https://github.com" target="_blank">github.com</a></strong>
+        <p>GitHub stores your code online. Think of it as Google Drive for code. It's free.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <strong>Create a Vercel account → <a href="https://vercel.com" target="_blank">vercel.com</a></strong>
+        <p>Click "Sign Up with GitHub" — use your GitHub account. Don't create a separate password.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <strong>Install Git on your computer</strong>
+        <p>Download from <a href="https://git-scm.com/downloads" target="_blank">git-scm.com/downloads</a>. After installing, open Terminal (Mac/Linux) or Command Prompt (Windows) and run:</p>
+        <pre><span class="cmd">git --version</span>
+<span class="cm"># Should show something like: git version 2.45.0</span></pre>
+      </div>
+    </div>
+  </div>
+  <div class="info">Use the same email address for both GitHub and Vercel — it keeps things simple.</div>
+</div>
+
+<!-- ── STEP 1 ── -->
+<div class="card" id="s1">
+  <div class="card-head">
+    <div class="num">1</div>
+    <div><h2>Upload Code to GitHub</h2><p>~10 minutes</p></div>
+  </div>
+
+  <h3 class="sub">1A – Create a new repository on GitHub</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <strong>Go to github.com → Click the green "New" button</strong>
+        <p>Find it on the left sidebar. Or click the "+" icon top-right → "New repository".</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <strong>Fill in the repository name</strong>
+        <pre><span class="key">Repository name:</span> <span class="val">chhatrapati-udyog-samuh</span>
+<span class="key">Visibility:</span>       <span class="val">Public</span></pre>
+        <p>Do NOT tick "Add README" or "Add .gitignore" — your project already has them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <strong>Click "Create repository"</strong>
+        <p>GitHub shows a page with setup instructions. Keep this page open — you need the URL shown there.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">4</div>
+      <div class="sc">
+        <strong>Copy the repository URL</strong>
+        <p>It looks like: <code>https://github.com/YOUR-USERNAME/chhatrapati-udyog-samuh.git</code></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">1B – Push your project files from Terminal</h3>
+  <p style="font-size:13px;margin-bottom:8px;">Open Terminal (Mac/Linux) or Command Prompt (Windows). Navigate to your project folder:</p>
+  <pre>
+<span class="cm"># Windows example (adjust to where your folder is):</span>
+<span class="cmd">cd C:\Users\YourName\Downloads\chhatrapati-static</span>
+
+<span class="cm"># Mac/Linux example:</span>
+<span class="cmd">cd ~/Downloads/chhatrapati-static</span></pre>
+
+  <p style="font-size:13px;margin:10px 0 8px;">Then run these commands one by one:</p>
+  <pre>
+<span class="cm"># Step 1: Initialize git in this folder</span>
+<span class="cmd">git init</span>
+
+<span class="cm"># Step 2: Add all files</span>
+<span class="cmd">git add .</span>
+
+<span class="cm"># Step 3: Save them with a message</span>
+<span class="cmd">git commit -m "first commit"</span>
+
+<span class="cm"># Step 4: Connect to your GitHub repository (paste YOUR URL)</span>
+<span class="cmd">git remote add origin https://github.com/YOUR-USERNAME/chhatrapati-udyog-samuh.git</span>
+
+<span class="cm"># Step 5: Set branch name to main</span>
+<span class="cmd">git branch -M main</span>
+
+<span class="cm"># Step 6: Upload to GitHub</span>
+<span class="cmd">git push -u origin main</span></pre>
+
+  <div class="warn">GitHub may ask for your username and password. If password fails, you need a Personal Access Token. Go to: GitHub → Settings → Developer Settings → Personal access tokens → Tokens (classic) → Generate new token → tick "repo" → Copy the token → use it as your password.</div>
+  <div class="sol">After pushing, refresh your GitHub page. You should see all your files listed (index.html, css/, js/, images/). If yes — this step is done!</div>
+
+  <h3 class="sub">Common GitHub errors</h3>
+  <div class="err"><div class="et">❌ "remote origin already exists"</div>
+  Fix: <code>git remote remove origin</code> → then redo the <code>git remote add origin ...</code> line.</div>
+  <div class="err"><div class="et">❌ "src refspec main does not match any"</div>
+  Fix: You skipped the commit step. Run <code>git add .</code> then <code>git commit -m "first commit"</code> first.</div>
+  <div class="err"><div class="et">❌ "Authentication failed"</div>
+  Fix: Use a Personal Access Token as your password (see warning above). Normal passwords no longer work in Git terminal.</div>
+</div>
+
+<!-- ── STEP 2 ── -->
+<div class="card" id="s2">
+  <div class="card-head">
+    <div class="num g">2</div>
+    <div><h2 class="g">Deploy to Vercel</h2><p>~10 minutes</p></div>
+  </div>
+
+  <div class="info">Vercel reads your GitHub repository and builds your website automatically. Every time you push new code to GitHub, Vercel redeploys automatically.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn g">1</div>
+      <div class="sc">
+        <strong>Go to vercel.com → Click "Add New Project"</strong>
+        <p>You should be already logged in via GitHub.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">2</div>
+      <div class="sc">
+        <strong>Import your GitHub repository</strong>
+        <p>Find <code>chhatrapati-udyog-samuh</code> in the list → Click <strong>"Import"</strong>.</p>
+        <p>If you don't see it, click "Adjust GitHub App Permissions" and grant access to your repository.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">3</div>
+      <div class="sc">
+        <strong>Configure the project settings</strong>
+        <p>Vercel should auto-detect everything correctly. Verify these settings:</p>
+        <pre>
+<span class="key">Framework Preset:</span>  <span class="val">Other</span>  <span class="cm">(NOT Next.js or React)</span>
+<span class="key">Root Directory:</span>    <span class="val">./</span>     <span class="cm">(leave as default)</span>
+<span class="key">Build Command:</span>     <span class="val">leave empty</span>
+<span class="key">Output Directory:</span>  <span class="val">leave empty  (or ./)</span></pre>
+        <div class="warn">This is a static HTML website — there is NO build step. If Vercel auto-detects a framework, change Framework Preset to <strong>"Other"</strong>.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">4</div>
+      <div class="sc">
+        <strong>Click "Deploy"</strong>
+        <p>Vercel will upload and deploy your files. This takes about 30–60 seconds.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">5</div>
+      <div class="sc">
+        <strong>You'll see a congratulations screen with your live URL</strong>
+        <p>Your website is live! The URL looks like:</p>
+        <pre><span class="val">https://chhatrapati-udyog-samuh.vercel.app</span></pre>
+        <div class="sol">Click "Visit" to open your live website. Share this URL with customers!</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">Common Vercel errors</h3>
+  <div class="err"><div class="et">❌ Website shows blank white page or "404 Not Found"</div>
+  Fix: Vercel Dashboard → Your project → Settings → General → Framework Preset → Change to <strong>Other</strong> → Redeploy.</div>
+  <div class="err"><div class="et">❌ "No Output Directory named 'public'" error</div>
+  Fix: Vercel Dashboard → Settings → Build &amp; Output Settings → Output Directory → delete the value (leave blank) → Redeploy.</div>
+  <div class="err"><div class="et">❌ CSS/JS not loading (broken design)</div>
+  Fix: Make sure your folder structure is correct — <code>css/style.css</code>, <code>js/data.js</code>, <code>js/app.js</code> — and all files were pushed to GitHub. Run <code>git add . &amp;&amp; git commit -m "fix" &amp;&amp; git push</code>.</div>
+  <div class="err"><div class="et">❌ Can't find repository during import</div>
+  Fix: Click "Configure GitHub App" or "Adjust permissions" in Vercel → Grant access to "All repositories" → Retry import.</div>
+</div>
+
+<!-- ── STEP 3 ── -->
+<div class="card" id="s3">
+  <div class="card-head">
+    <div class="num">3</div>
+    <div><h2>Test Your Live Website</h2><p>~5 minutes</p></div>
+  </div>
+  <div class="checklist">
+    <label class="check-item"><input type="checkbox"/> Home page loads — project cards (शिव नगर, जिजाऊ नगर) visible</label>
+    <label class="check-item"><input type="checkbox"/> "आमच्या योजना" page shows plan details</label>
+    <label class="check-item"><input type="checkbox"/> "प्लॉट माहिती" page shows available/sold count from data.js</label>
+    <label class="check-item"><input type="checkbox"/> "संपर्क" page shows both contacts correctly</label>
+    <label class="check-item"><input type="checkbox"/> Clicking "चौकशी करा" opens popup with phone number</label>
+    <label class="check-item"><input type="checkbox"/> Call button dials the correct number</label>
+    <label class="check-item"><input type="checkbox"/> WhatsApp button opens WhatsApp with pre-filled message</label>
+    <label class="check-item"><input type="checkbox"/> Footer shows both contact names and numbers</label>
+    <label class="check-item"><input type="checkbox"/> Open website on mobile phone (most visitors use phones!)</label>
+    <label class="check-item"><input type="checkbox"/> Header shows Rajmudra image (if you added images/rajmudra.png)</label>
+  </div>
+</div>
+
+<!-- ── STEP 4 ── -->
+<div class="card" id="s4">
+  <div class="card-head">
+    <div class="num g">4</div>
+    <div><h2 class="g">Update the Website Later</h2></div>
+  </div>
+
+  <h3 class="sub">For content changes (plots, photos, contacts)</h3>
+  <p style="font-size:13px;margin-bottom:8px;"><strong>Only edit <code>js/data.js</code></strong> — no other file needs to change.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn g">1</div>
+      <div class="sc">
+        <strong>Open js/data.js in any text editor (Notepad, VS Code, etc.)</strong>
+        <p>Find the value you want to change — plot count, phone number, etc.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">2</div>
+      <div class="sc">
+        <strong>Make the change and save the file</strong>
+        <pre>
+<span class="cm"># Example: reduce available plots from 15 to 12</span>
+<span class="key">availablePlots:</span> <span class="val">12</span>,   <span class="cm">// changed from 15</span></pre>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">3</div>
+      <div class="sc">
+        <strong>Push to GitHub (Vercel auto-deploys)</strong>
+        <pre>
+<span class="cmd">git add .</span>
+<span class="cmd">git commit -m "updated available plots for shiv nagar"</span>
+<span class="cmd">git push</span></pre>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">4</div>
+      <div class="sc">
+        <strong>Wait 1–2 minutes → Refresh your Vercel URL</strong>
+        <p>Changes are live! Vercel redeploys automatically on every push.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">For adding photos</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="sn g">1</div>
+      <div class="sc">
+        <strong>Copy photo to the correct folder</strong>
+        <p>शिव नगर → <code>images/projects/shiv-nagar/photo1.jpg</code><br/>
+           जिजाऊ नगर → <code>images/projects/jijau-nagar/photo1.jpg</code></p>
+        <div class="warn">Use simple filenames — no Marathi, no spaces. Good: <code>photo1.jpg</code>, <code>front.jpg</code>. Bad: <code>शिव नगर फोटो.jpg</code></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">2</div>
+      <div class="sc">
+        <strong>Add the filename in data.js photos array</strong>
+        <pre>
+<span class="key">photos:</span> [
+  <span class="val">'images/projects/shiv-nagar/photo1.jpg'</span>,
+  <span class="val">'images/projects/shiv-nagar/photo2.jpg'</span>,
+],</pre>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">3</div>
+      <div class="sc">
+        <strong>Push to GitHub</strong>
+        <pre>
+<span class="cmd">git add .</span>
+<span class="cmd">git commit -m "added photos for shiv nagar"</span>
+<span class="cmd">git push</span></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 5 ── -->
+<div class="card" id="s5">
+  <div class="card-head">
+    <div class="num">5</div>
+    <div><h2>Redeploy Summary</h2></div>
+  </div>
+  <p style="font-size:14px;margin-bottom:12px;">Every time you want to update the live website, these 3 commands are all you need:</p>
+  <pre>
+<span class="cmd">git add .</span>
+<span class="cmd">git commit -m "what you changed"</span>
+<span class="cmd">git push</span>
+<span class="cm">
+# Vercel detects the push and auto-deploys within 1–2 minutes.
+# No manual steps needed on Vercel dashboard.</span></pre>
+  <div class="sol">You can also trigger a manual redeploy from Vercel Dashboard → Deployments → "Redeploy" — useful if something looks wrong.</div>
+</div>
+
+<!-- ── STEP 6 ── -->
+<div class="card" id="s6">
+  <div class="card-head">
+    <div class="num g">6</div>
+    <div><h2 class="g">Custom Domain (Future)</h2><p>When you want yourname.com instead of vercel.app</p></div>
+  </div>
+
+  <div class="info">A custom domain like <code>chhatrapatiudyog.in</code> costs about ₹700–₹900/year. The hosting on Vercel remains free forever.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn g">1</div>
+      <div class="sc">
+        <strong>Buy a domain from GoDaddy, BigRock, or Hostinger</strong>
+        <p>Search for a <code>.in</code> domain — cheap and looks professional for Indian businesses.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">2</div>
+      <div class="sc">
+        <strong>In Vercel: Project → Settings → Domains → Add Domain</strong>
+        <p>Type your domain name (e.g. <code>chhatrapatiudyog.in</code>) and click Add.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">3</div>
+      <div class="sc">
+        <strong>Vercel shows DNS records — add them in your domain registrar</strong>
+        <p>Log in to GoDaddy/BigRock → DNS Management → Add the records shown by Vercel (usually a CNAME or A record).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn g">4</div>
+      <div class="sc">
+        <strong>Wait 10–60 minutes for DNS to propagate</strong>
+        <p>Your domain will point to your Vercel website. Vercel also adds free HTTPS (https://) automatically.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ERRORS ── -->
+<div class="card" id="s7">
+  <div class="card-head">
+    <div class="num">!</div>
+    <div><h2>All Common Errors at a Glance</h2></div>
+  </div>
+  <table>
+    <thead><tr><th>Error / Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">GITHUB</span><br/>Authentication failed</td>
+        <td>Passwords no longer work in Git terminal</td>
+        <td>Use Personal Access Token as password (GitHub → Settings → Developer Settings → PAT → Generate)</td>
+      </tr>
+      <tr>
+        <td><span class="tag">GITHUB</span><br/>"remote origin already exists"</td>
+        <td>Git remote already set</td>
+        <td><code>git remote remove origin</code> → then re-add</td>
+      </tr>
+      <tr>
+        <td><span class="tag">GITHUB</span><br/>"src refspec main does not match"</td>
+        <td>No commit exists yet</td>
+        <td><code>git add .</code> then <code>git commit -m "first commit"</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">VERCEL</span><br/>Blank white page</td>
+        <td>Framework set wrongly</td>
+        <td>Vercel → Settings → Framework Preset → Other → Redeploy</td>
+      </tr>
+      <tr>
+        <td><span class="tag">VERCEL</span><br/>404 Not Found on visit</td>
+        <td>Output directory wrong or framework wrong</td>
+        <td>Set Framework = Other, Output Directory = blank → Redeploy</td>
+      </tr>
+      <tr>
+        <td><span class="tag">VERCEL</span><br/>Broken design (no colors/layout)</td>
+        <td>CSS or JS files not uploaded</td>
+        <td>Check GitHub repo has <code>css/</code> and <code>js/</code> folders → <code>git add . &amp;&amp; git push</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">VERCEL</span><br/>Photos not showing</td>
+        <td>Image path wrong or file not pushed</td>
+        <td>Check path in data.js matches exact filename + folder. Run <code>git add . &amp;&amp; git push</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">VERCEL</span><br/>Can't import repository</td>
+        <td>Vercel has no permission to see it</td>
+        <td>Vercel → "Configure GitHub App" → Allow access to repository</td>
+      </tr>
+      <tr>
+        <td><span class="tag">DATA</span><br/>Change in data.js not showing on website</td>
+        <td>Forgot to push to GitHub</td>
+        <td><code>git add . &amp;&amp; git commit -m "update" &amp;&amp; git push</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">DATA</span><br/>Local browser shows change but live site doesn't</td>
+        <td>Browser cached old version</td>
+        <td>Press <strong>Ctrl+Shift+R</strong> (hard reload) on the live Vercel URL</td>
+      </tr>
+      <tr>
+        <td><span class="tag">PHOTO</span><br/>Photo shows as broken image icon</td>
+        <td>Filename in data.js doesn't match actual file</td>
+        <td>Check exact filename (capital letters matter!). <code>Photo1.jpg</code> ≠ <code>photo1.jpg</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary" id="s8">
+  <h3>🎉 You're Done! Your Live URLs</h3>
+  <div class="url-box"><strong>🌐 Live Website:</strong><br/><code>https://chhatrapati-udyog-samuh.vercel.app</code></div>
+  <div class="url-box"><strong>📁 GitHub Repo:</strong><br/><code>https://github.com/YOUR-USERNAME/chhatrapati-udyog-samuh</code></div>
+  <div class="url-box"><strong>💻 To update anything:</strong><br/>Edit <code>js/data.js</code> → <code>git add . &amp;&amp; git commit -m "update" &amp;&amp; git push</code></div>
+  <p style="margin-top:14px;font-size:13px;opacity:.8;">Hosting cost: ₹0 forever &nbsp;|&nbsp; जय शिवाजी | जय भवानी 🚩</p>
+</div>
+
+<footer>छत्रपती उद्योग समूह – Deployment Guide &nbsp;|&nbsp; GitHub + Vercel Free Hosting</footer>
+</div>
+</body>
+</html>

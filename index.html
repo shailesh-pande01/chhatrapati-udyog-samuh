@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="छत्रपती उद्योग समूह – भोकरदन, जालना येथील विश्वासार्ह प्लॉट योजना" />
+  <title>छत्रपती उद्योग समूह – भोकरदन, जालना</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ TOP STRIP ══════════════ -->
+  <div class="top-strip">
+    📍 भोकरदन, जिल्हा जालना, महाराष्ट्र
+    &nbsp;|&nbsp;
+    📞 <span id="top-phone">9028730624</span>
+  </div>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header">
+    <!--
+      RAJMUDRA LOGO:
+      1. Save your logo image as:  images/rajmudra.png
+      2. The image will appear automatically in this circle.
+      3. If the file is missing, a placeholder text shows instead.
+    -->
+    <div class="rajmudra">
+      <img
+        src="images/rajmudra.png"
+        alt="राजमुद्रा"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="rajmudra-placeholder" style="display:none;">राज<br/>मुद्रा</div>
+    </div>
+
+    <div class="header-text">
+      <h1>छत्रपती उद्योग समूह</h1>
+      <p>भोकरदन, जालना – विश्वासार्ह प्लॉट योजना</p>
+    </div>
+  </header>
+
+  <!-- ══════════════ NAVIGATION ══════════════ -->
+  <nav class="site-nav">
+    <button class="nav-btn active" data-page="home"      onclick="showPage('home')">🏠 मुख्यपृष्ठ</button>
+    <button class="nav-btn"        data-page="yojana"    onclick="showPage('yojana')">📋 आमच्या योजना</button>
+    <button class="nav-btn"        data-page="plot-info" onclick="showPage('plot-info')">🗺️ प्लॉट माहिती</button>
+    <button class="nav-btn"        data-page="contact"   onclick="showPage('contact')">📞 संपर्क</button>
+  </nav>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main>
+
+    <!-- ── PAGE: HOME ─────────────────────────── -->
+    <section id="page-home" class="page active">
+
+      <!-- Hero banner -->
+      <div class="hero">
+        <div class="namaste">🙏</div>
+        <h2>छत्रपती उद्योग समूहात<br/>आपले स्वागत आहे!</h2>
+        <p>
+          भोकरदन, जालना येथील विश्वासार्ह प्लॉट योजना.<br/>
+          स्वस्त दरात, कायदेशीर कागदपत्रांसह उत्तम जमीन मिळवा.
+        </p>
+        <span class="location-badge">📍 भोकरदन, जिल्हा जालना, महाराष्ट्र</span>
+      </div>
+
+      <div class="divider">✦ ✦ ✦</div>
+
+      <p style="text-align:center;font-size:18px;color:#333;margin-bottom:20px;">
+        आमच्या प्रमुख योजना खाली पहा 👇
+      </p>
+
+      <!-- Project cards – rendered by app.js from data.js -->
+      <div class="card-grid" id="home-projects"></div>
+
+      <!-- Trust section -->
+      <div class="trust-strip">
+        <h4>✅ आम्ही का विश्वासार्ह आहोत?</h4>
+        <div class="trust-item">
+          <span class="tick">✔</span>
+          <span>सर्व प्लॉटचे कायदेशीर कागदपत्रे उपलब्ध आहेत.</span>
+        </div>
+        <div class="trust-item">
+          <span class="tick">✔</span>
+          <span>भोकरदन परिसरातील अनुभवी व्यावसायिक.</span>
+        </div>
+        <div class="trust-item">
+          <span class="tick">✔</span>
+          <span>शेतकरी व सामान्य माणसांसाठी परवडणाऱ्या किमती.</span>
+        </div>
+        <div class="trust-item">
+          <span class="tick">✔</span>
+          <span>प्रत्यक्ष जागा पाहण्याची सुविधा उपलब्ध.</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── PAGE: YOJANA (OUR PLANS) ──────────── -->
+    <section id="page-yojana" class="page">
+      <h2 class="section-title">आमच्या योजना</h2>
+      <p class="section-sub">खालील योजना सध्या उपलब्ध आहेत.</p>
+      <!-- Filled by app.js -->
+      <div class="plan-cards" id="yojana-cards"></div>
+    </section>
+
+    <!-- ── PAGE: PLOT INFO ────────────────────── -->
+    <section id="page-plot-info" class="page">
+      <h2 class="section-title">प्लॉट माहिती</h2>
+      <p class="section-sub">आमच्या प्लॉटची संपूर्ण माहिती खाली दिली आहे.</p>
+      <!-- Filled by app.js -->
+      <div id="plot-cards"></div>
+    </section>
+
+    <!-- ── PAGE: CONTACT ──────────────────────── -->
+    <section id="page-contact" class="page">
+      <h2 class="section-title">संपर्क करा</h2>
+      <p class="section-sub">कोणत्याही प्रश्नासाठी खाली संपर्क करा.</p>
+      <!-- Filled by app.js -->
+      <div id="contact-cards"></div>
+      <!-- Static notice box -->
+      <div class="contact-notice">
+        <strong>📌 महत्त्वाची माहिती:</strong><br/>
+        प्लॉट खरेदी करण्यापूर्वी प्रत्यक्ष जागा पाहणे आवश्यक आहे.
+        सर्व कागदपत्रे तपासणे बंधनकारक आहे.
+        आम्ही पारदर्शक व्यवहारासाठी वचनबद्ध आहोत.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <!-- Filled by app.js -->
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <!-- ══════════════ INQUIRY MODAL ══════════════ -->
+  <div class="modal-overlay" id="inquiry-modal" onclick="handleModalClick(event)">
+    <div class="modal">
+      <h3>📞 चौकशी करा</h3>
+      <p id="modal-project-name" style="font-size:18px;font-weight:700;color:var(--green-dk);margin-bottom:6px;"></p>
+      <p>किंमत व अधिक माहितीसाठी आत्ताच संपर्क करा:</p>
+      <div class="big-phone" id="modal-phone"></div>
+      <p id="modal-contact-name" style="font-size:14px;color:#888;margin-bottom:16px;"></p>
+      <div class="modal-btns">
+        <a id="modal-call-btn" href="#" class="btn btn-green">📞 आत्ता फोन करा</a>
+        <a id="modal-wp-btn"   href="#" target="_blank" rel="noopener"
+           class="btn" style="background:#25D366;color:#fff;">💬 WhatsApp करा</a>
+        <button class="modal-close" onclick="closeModal()">✕ बंद करा</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PHOTO LIGHTBOX ══════════════ -->
+  <div
+    id="lightbox"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);
+           z-index:300;align-items:center;justify-content:center;padding:16px;cursor:zoom-out;"
+    onclick="closeLightbox()"
+  >
+    <img id="lightbox-img" src="" alt="photo"
+         style="max-width:100%;max-height:90vh;border-radius:10px;" />
+  </div>
+
+  <!-- ══════════════ SCRIPTS ══════════════ -->
+  <!-- Load data FIRST, then app logic -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

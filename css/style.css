@@ -1,0 +1,546 @@
+/* ═══════════════════════════════════════════════════════════
+   छत्रपती उद्योग समूह  –  style.css
+   हे फाईल बदलण्याची गरज नाही.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Google Font (Marathi) ── */
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --saffron:    #E8761A;
+  --saffron-lt: #FEF0E1;
+  --saffron-dk: #C45E0A;
+  --green:      #2A7A2A;
+  --green-lt:   #EBF5EB;
+  --green-dk:   #1C571C;
+  --white:      #FFFFFF;
+  --cream:      #FDF8F2;
+  --text:       #1A1A1A;
+  --muted:      #555555;
+  --border:     #DDD0C0;
+  --shadow:     0 4px 18px rgba(0,0,0,0.10);
+}
+
+/* ── Reset ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   TOP STRIP
+   ═══════════════════════════════════════ */
+.top-strip {
+  background: var(--saffron);
+  color: var(--white);
+  text-align: center;
+  font-size: 13px;
+  padding: 5px 12px;
+  letter-spacing: 0.4px;
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════ */
+.site-header {
+  background: var(--white);
+  border-bottom: 4px solid var(--saffron);
+  padding: 18px 20px 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.rajmudra {
+  width: 68px; height: 68px; min-width: 68px;
+  border-radius: 50%;
+  border: 3px solid var(--saffron);
+  background: var(--saffron-lt);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.rajmudra img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.rajmudra-placeholder {
+  font-size: 11px;
+  color: var(--saffron-dk);
+  text-align: center;
+  padding: 4px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.header-text h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--saffron-dk);
+  line-height: 1.3;
+}
+.header-text p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════ */
+.site-nav {
+  background: var(--green);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.site-nav::-webkit-scrollbar { display: none; }
+
+.site-nav .nav-btn {
+  flex: 1;
+  min-width: 90px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 16px;
+  padding: 14px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.site-nav .nav-btn:last-child { border-right: none; }
+.site-nav .nav-btn:hover,
+.site-nav .nav-btn.active {
+  background: var(--saffron);
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════
+   MAIN / PAGES
+   ═══════════════════════════════════════ */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.page       { display: none; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════════
+   SECTION HEADING
+   ═══════════════════════════════════════ */
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--saffron-dk);
+  border-left: 6px solid var(--saffron);
+  padding-left: 14px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  padding-left: 20px;
+}
+
+/* ═══════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--saffron-lt) 0%, #fff8f0 60%, var(--green-lt) 100%);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 22px;
+  text-align: center;
+  margin-bottom: 28px;
+}
+.hero .namaste  { font-size: 38px; line-height: 1; }
+.hero h2 {
+  font-size: 26px;
+  color: var(--saffron-dk);
+  margin: 10px 0 8px;
+  font-weight: 700;
+}
+.hero p {
+  font-size: 17px;
+  color: #444;
+  max-width: 520px;
+  margin: 0 auto 8px;
+}
+.hero .location-badge {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 5px 18px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════ */
+.divider {
+  text-align: center;
+  font-size: 28px;
+  color: var(--saffron);
+  margin: 20px 0;
+  letter-spacing: 8px;
+}
+
+/* ═══════════════════════════════════════
+   HOME – PROJECT CARDS
+   ═══════════════════════════════════════ */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 10px;
+}
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+.proj-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 26px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  box-shadow: var(--shadow);
+}
+.proj-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--saffron);
+  box-shadow: 0 8px 28px rgba(232,118,26,0.18);
+}
+.proj-card .icon { font-size: 46px; }
+.proj-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green-dk);
+  margin: 12px 0 6px;
+}
+.proj-card p    { font-size: 14px; color: var(--muted); }
+.proj-card .arrow {
+  display: inline-block;
+  margin-top: 14px;
+  background: var(--saffron);
+  color: var(--white);
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   TRUST STRIP
+   ═══════════════════════════════════════ */
+.trust-strip {
+  margin-top: 30px;
+  background: var(--green-lt);
+  border: 1.5px solid #B8D8B8;
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.trust-strip h4 {
+  font-size: 17px;
+  color: var(--green-dk);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #333;
+}
+.trust-item .tick { color: var(--green); font-size: 18px; margin-top: 1px; }
+
+/* ═══════════════════════════════════════
+   PLAN CARDS (Yojana + Plot Info)
+   ═══════════════════════════════════════ */
+.plan-cards { display: flex; flex-direction: column; gap: 20px; }
+
+.plan-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.plan-card-header {
+  background: var(--saffron);
+  color: var(--white);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.plan-card-header .icon  { font-size: 28px; }
+.plan-card-header h3     { font-size: 22px; font-weight: 700; }
+.plan-card-header small  { font-size: 13px; opacity: 0.88; }
+
+.plan-card-body { padding: 20px; }
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 16px;
+  gap: 10px;
+}
+.info-row:last-of-type { border-bottom: none; }
+.info-row .label { color: var(--muted); min-width: 140px; font-size: 15px; }
+.info-row .value { font-weight: 700; color: var(--text); text-align: right; }
+
+.badge-available {
+  background: var(--green);
+  color: var(--white);
+  border-radius: 6px;
+  padding: 2px 12px;
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity 0.15s, transform 0.1s;
+  line-height: 1.4;
+}
+.btn:active   { transform: scale(0.97); }
+.btn:hover    { opacity: 0.88; }
+.btn-saffron  { background: var(--saffron); color: var(--white); }
+.btn-green    { background: var(--green);   color: var(--white); }
+.btn-outline  {
+  background: var(--white);
+  color: var(--green-dk);
+  border: 2px solid var(--green);
+}
+.btn-full     { display: block; width: 100%; }
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.btn-row .btn { flex: 1; min-width: 140px; }
+
+/* ═══════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════ */
+.contact-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 22px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.contact-card .avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--saffron-lt);
+  border: 3px solid var(--saffron);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.contact-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green-dk);
+  margin-bottom: 4px;
+}
+.contact-card .role {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.phone-display {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--saffron-dk);
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  direction: ltr;
+}
+.contact-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-btns a {
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.15s;
+}
+.contact-btns a:hover { opacity: 0.87; }
+.btn-call { background: var(--green);   color: var(--white); }
+.btn-wp   { background: #25D366;        color: var(--white); }
+
+.contact-note {
+  margin-top: 24px;
+  background: var(--saffron-lt);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 15px;
+  color: #444;
+  text-align: left;
+}
+.contact-note strong { color: var(--saffron-dk); }
+
+.contact-notice {
+  margin-top: 20px;
+  background: var(--saffron-lt);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+}
+.contact-notice strong { color: var(--saffron-dk); font-size: 16px; }
+
+/* ═══════════════════════════════════════
+   PHOTO GALLERY
+   ═══════════════════════════════════════ */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.photo-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.photo-thumb:hover { transform: scale(1.04); }
+
+/* ═══════════════════════════════════════
+   INQUIRY MODAL
+   ═══════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 22px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+  text-align: center;
+}
+.modal h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--saffron-dk);
+  margin-bottom: 8px;
+}
+.modal p { font-size: 15px; color: #444; margin-bottom: 12px; }
+
+.big-phone {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--green-dk);
+  margin: 12px 0 8px;
+  direction: ltr;
+}
+.modal-btns { display: flex; gap: 12px; flex-direction: column; }
+.modal-btns .btn { display: block; }
+
+.modal-close {
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  width: 100%;
+}
+.modal-close:hover { background: #f5f5f5; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.site-footer {
+  background: var(--green-dk);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.site-footer strong { color: var(--white); }
+.site-footer a      { color: var(--white); }
+
+/* ═══════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════ */
+::-webkit-scrollbar       { width: 7px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
