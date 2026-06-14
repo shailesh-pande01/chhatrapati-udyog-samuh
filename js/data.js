@@ -30,12 +30,16 @@ const SITE = {
     primary: {
       name:  'भगवान पांडे',
       phone: '9028730624',          // ← फोन नंबर बदलण्यासाठी येथे बदला
-      role:  'प्रमुख संपर्क व्यक्ती'
+      role:  'प्रमुख संपर्क व्यक्ती',
+      // फोटो जोडायला: images/contacts/ मध्ये photo save करा आणि खाली नाव द्या
+      // To add photo: save image in images/contacts/ folder and set path below
+      photo: 'images/contacts/bhagwan-pande.jpg'  // ← फोटो नसल्यास: photo: ''
     },
     secondary: {
       name:  'पंडित लक्खस',
       phone: '9422291323',          // ← फोन नंबर बदलण्यासाठी येथे बदला
-      role:  'संपर्क व्यक्ती'
+      role:  'संपर्क व्यक्ती',
+      photo: 'images/contacts/pandit-lakhas.jpg'  // ← फोटो नसल्यास: photo: ''
     }
   },
 

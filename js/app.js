@@ -196,7 +196,16 @@ function fillContactPage() {
 
 function contactCard(c, isPrimary) {
   var html = '<div class="contact-card"' + (isPrimary ? '' : ' style="margin-top:20px;"') + '>';
-  html += '<div class="avatar">👨‍💼</div>';
+
+  if (c.photo) {
+    html += '<div class="avatar">'
+          +   '<img src="' + c.photo + '" alt="' + c.name + '"'
+          +        ' onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />'
+          +   '<span class="avatar-fallback" style="display:none;">👨‍💼</span>'
+          + '</div>';
+  } else {
+    html += '<div class="avatar"><span class="avatar-fallback" style="display:flex;">👨‍💼</span></div>';
+  }
   html += '<h3>' + c.name + '</h3>';
   html += '<p class="role">' + c.role + ' – छत्रपती उद्योग समूह</p>';
   html += '<div class="phone-display">📞 ' + c.phone + '</div>';
